@@ -2,9 +2,9 @@
 
 A Python package implementing generalized Polynomial Chaos Expansion (gPCE) for uncertainty quantification and surrogate modeling.
 
-Website: [https://buildchain.ilab.sztaki.hu/](https://buildchain.ilab.sztaki.hu/)
-Source code: [https://github.com/TRACE-Structures2/gPCE_model](https://github.com/TRACE-Structures2/gPCE_model)
-Bug reports: [https://github.com/TRACE-Structures2/gPCE_model/issues](https://github.com/TRACE-Structures2/gPCE_model/issues)
+- Website: [https://buildchain.ilab.sztaki.hu/](https://buildchain.ilab.sztaki.hu/)
+- Source code: [https://github.com/TRACE-Structures2/gPCE_model](https://github.com/TRACE-Structures2/gPCE_model)
+- Bug reports: [https://github.com/TRACE-Structures2/gPCE_model/issues](https://github.com/TRACE-Structures2/gPCE_model/issues)
 
 ## Overview
 
