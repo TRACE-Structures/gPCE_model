@@ -1,5 +1,7 @@
 # gPCE_model
 
+[![DOI](https://zenodo.org/badge/1113758403.svg)](https://doi.org/10.5281/zenodo.17966291)
+
 A Python package implementing generalized Polynomial Chaos Expansion (gPCE) for uncertainty quantification and surrogate modeling.
 
 - Website: [https://buildchain.ilab.sztaki.hu/](https://buildchain.ilab.sztaki.hu/)
