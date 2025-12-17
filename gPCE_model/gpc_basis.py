@@ -2,7 +2,7 @@
 
 import numpy as np
 from .multiindex import multiindex
-from variable_set.polysys import syschar_to_polysys
+import uncertain_variables as uv
 
 class GpcBasis:
     """ Generic class for generalized polynomial chaos basis functions
@@ -123,13 +123,13 @@ class GpcBasis:
         p[:, :, 1] = np.ones(xi.shape)
 
         if len(syschars) == 1:
-            polysys = syschar_to_polysys(syschars)
+            polysys = uv.syschar_to_polysys(syschars)
             r = polysys.recur_coeff(deg)
             for d in range(deg):
                 p[:, :, d + 2] = (r[d, 0] + xi * r[d, 1]) * p[:, :, d + 1] - r[d, 2] * p[:, :, d]
         else:
             for j, syschar in enumerate(syschars):
-                polysys = syschar_to_polysys(syschar)
+                polysys = uv.syschar_to_polysys(syschar)
                 r = polysys.recur_coeff(deg)
                 for d in range(deg):
                     p[:, j, d + 2] = (r[d, 0] + xi[:, j] * r[d, 1]) * p[:, j, d + 1] - r[d, 2] * p[:, j, d]
@@ -169,7 +169,7 @@ class GpcBasis:
         if len(syschars) == 1:
             # max degree of univariate polynomials
             deg = max(self.I.flatten())
-            polysys = syschar_to_polysys(syschars)
+            polysys = uv.syschar_to_polysys(syschars)
             nrm = polysys.sqnorm(range(deg + 1))
             norm2_I = np.prod(nrm[I].reshape(I.shape), axis=1)
 
@@ -177,7 +177,7 @@ class GpcBasis:
             norm2_I = np.ones([M])
             for j in range(m):
                 deg = max(I[:, j])
-                polysys = syschar_to_polysys(syschars[j])
+                polysys = uv.syschar_to_polysys(syschars[j])
                 nrm2 = polysys.sqnorm(np.arange(deg + 1))
                 norm2_I = norm2_I * nrm2[I[:, j]]
         if do_sqrt:

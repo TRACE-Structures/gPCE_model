@@ -43,9 +43,6 @@ class GpcModel:
         compute_coeffs_by_projection(q_k_j, u_k_i, w_k)
             Compute gPCE coefficients using projection method
 
-        predict_response(q_k_j)
-            Predict model response at given parameter points q_k_j
-
         predict(q_k_j)
             Predict model response at given parameter points q_k_j
 
@@ -139,27 +136,7 @@ class GpcModel:
         phi_k_alpha = self.basis.evaluate(xi_k_j)
         u_alpha_i = np.matmul(phi_k_alpha, np.diag(w_k), u_k_i)
         self.u_alpha_i = u_alpha_i
-    
-    def predict_response(self, q_k_j):
-        """ Predict model response at given parameter points q_k_j
-
-            Parameters
-            ----------
-            q_k_j : array_like
-                Input parameter samples
-
-            Returns
-            -------
-            u_k_i : numpy.array
-                Predicted responses corresponding to input samples"""
         
-        xi_k_j = self.Q.params2germ(q_k_j)
-        phi_k_alpha = self.basis.evaluate(xi_k_j)
-        u_k_i = np.matmul(phi_k_alpha, self.u_alpha_i)
-        if u_k_i.ndim == 1:  # Check if the array is 1D
-            u_k_i = u_k_i.reshape(1, -1)  # Reshape to (1, x)
-        return u_k_i
-    
     def predict(self, q_k_j):
         """ Predict model response at given parameter points q_k_j
 
@@ -197,7 +174,7 @@ class GpcModel:
                 Mean squared error on the training data """
         
         self.compute_coeffs_by_regression(q_train, y_train)
-        y = self.predict_response(q_train)
+        y = self.predict(q_train)
         mse = mean_squared_error(y_train, y)
         print(f"Validation MSE: {mse:.4f}")
         return mse
@@ -228,8 +205,8 @@ class GpcModel:
                 Mean squared error on the validation data """
         
         self.compute_coeffs_by_regression(q_train, y_train)
-        y_tr_pred = self.predict_response(q_train)
-        y_vl_pred = self.predict_response(q_val)
+        y_tr_pred = self.predict(q_train)
+        y_vl_pred = self.predict(q_val)
         mse_tr = mean_squared_error(y_train, y_tr_pred)
         mse_vl = mean_squared_error(y_val, y_vl_pred)
         return mse_tr, mse_vl
@@ -468,26 +445,3 @@ def gpc_multiindex2param_names(I_s, param_names):
 
         ind_start += l_i
     return indexed_param_names
-
-# ##########################################################################################
-#                           TEST
-# ##########################################################################################
-from variable_set.variable import Variable
-from variable_set.variable_set import VariableSet
-from variable_set.distributions import UniformDistribution, NormalDistribution
-def main():
-    #print(multiindex(3, 4))
-    P1 = Variable('p1', UniformDistribution(-2,2))
-    P2 = Variable('p2', NormalDistribution(-2,2))
-
-    Q = VariableSet()
-    Q.add(P1)
-    Q.add(P2)
-    gPCE = GpcModel(Q, p=3)
-    gPCE.basis.norm()
-    print(gPCE.basis.evaluate(np.array([np.arange(-1, 1, 0.1)] * 2)))
-    #print(gPCE)
-
-
-if __name__ == "__main__":
-    main()
