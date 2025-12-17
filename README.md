@@ -68,7 +68,7 @@ Functions for generating and managing multi-index sets.
 
 ## Authors and acknowledgment
 
-The code is developed by András Urbanics, Bence Popovics, Emese Vastag, Noémi Friedman and Uroš Bohinc in the TRACE-Structures group.
+The code is developed by András Urbanics, Bence Popovics, Emese Vastag, Elmar Zander and Noémi Friedman in the TRACE-Structures group. The softwer is built on Elmar Zander's [sglib](https://github.com/ezander/sglib) approach.
 
 The research and the development is founded by the Eurpean Union as part of the BUILDCHAIN project.
 
