@@ -12,6 +12,12 @@ A Python package implementing generalized Polynomial Chaos Expansion (gPCE) for 
 
 The `gPCE_model` package provides a complete framework for building and using generalized Polynomial Chaos Expansion (gPCE) surrogate models. These models efficiently approximate computational expensive simulations while quantifying uncertainty in the outputs. The implementation supports various polynomial systems, multi-index generation, and comprehensive uncertainty analysis including Sobol sensitivity indices.
 
+## Installation
+
+```bash
+pip install gPCE-model
+```
+
 ## Features
 
 - **Generalized Polynomial Chaos Expansion**: Build surrogate models using orthogonal polynomial bases
