@@ -84,6 +84,11 @@ This work has been funded by the European Commission Horizon Europe Innovation A
 
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0-only). See the [LICENSE](https://github.com/TRACE-Structures/gPCE_model/tree/main?tab=GPL-3.0-1-ov-file) file for details.
 
+## Related Projects
+
+- [uncertain_variables](https://github.com/TRACE-Structures/uncertain_variables/): Probabilistic variable management
+- [digital_twinning](https://github.com/TRACE-Structures/gPCE_model/): Digital Twinning
+
 ## Support
 
 For questions or issues, please refer to the project repository or contact the development team.
