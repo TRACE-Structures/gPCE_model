@@ -2,7 +2,7 @@
 
 [![DOI](https://zenodo.org/badge/1113758403.svg)](https://doi.org/10.5281/zenodo.17966291)
 
-A Python package implementing generalized Polynomial Chaos Expansion (gPCE) for uncertainty quantification and surrogate modeling.
+A Python package implementing generalized Polynomial Chaos Expansion (gPCE) for uncertainty quantification and surrogate modeling. The software is built on Elmar Zander's [sglib](https://github.com/ezander/sglib) approach.
 
 - Website: [https://buildchain.ilab.sztaki.hu/](https://buildchain.ilab.sztaki.hu/)
 - Source code: [https://github.com/TRACE-Structures/gPCE_model](https://github.com/TRACE-Structures/gPCE_model)
@@ -70,9 +70,9 @@ Functions for generating and managing multi-index sets.
 
 ## Authors and acknowledgment
 
-The code is developed by András Urbanics, Bence Popovics, Emese Vastag, Elmar Zander and Noémi Friedman in the TRACE-Structures group. The softwer is built on Elmar Zander's [sglib](https://github.com/ezander/sglib) approach.
+The code is developed by András Urbanics, Bence Popovics, Emese Vastag, Elmar Zander and Noémi Friedman in the TRACE-Structures group.
 
-The research and the development is founded by the Eurpean Union as part of the BUILDCHAIN project.
+This work has been funded by the European Commission Horizon Europe Innovation Action project 101092052 [BUILDCHAIN](https://buildchain-project.eu/)
 
 ## License
 
