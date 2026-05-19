@@ -56,7 +56,7 @@ class GpcBasis:
             full_tensor : bool, optional
                 If True, use full tensor product basis up to degree p, by default False """
         
-        m = Q.num_params()
+        m = Q.num_variables()
         self.m = m
 
         self.syschars = Q.get_gpc_syschars()

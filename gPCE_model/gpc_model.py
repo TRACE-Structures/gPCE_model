@@ -112,7 +112,7 @@ class GpcModel:
             u_k_i : array_like
                 Responses corresponding to input samples"""
         
-        xi_k_j = self.Q.params2germ(q_k_j)
+        xi_k_j = self.Q.variable2germ(q_k_j)
         phi_k_alpha = self.basis.evaluate(xi_k_j)
         u_alpha_i = np.matmul(np.linalg.pinv(phi_k_alpha), u_k_i)
         self.u_alpha_i = u_alpha_i
@@ -132,7 +132,7 @@ class GpcModel:
                 Weights for the projection method"""
         
 
-        xi_k_j = self.Q.params2germ(q_k_j)
+        xi_k_j = self.Q.variable2germ(q_k_j)
         phi_k_alpha = self.basis.evaluate(xi_k_j)
         u_alpha_i = np.matmul(phi_k_alpha, np.diag(w_k), u_k_i)
         self.u_alpha_i = u_alpha_i
@@ -150,7 +150,7 @@ class GpcModel:
             u_k_i : numpy.array
                 Predicted responses corresponding to input samples"""
 
-        xi_k_j = self.Q.params2germ(q_k_j)
+        xi_k_j = self.Q.variable2germ(q_k_j)
         phi_k_alpha = self.basis.evaluate(xi_k_j)
         u_k_i = np.matmul(phi_k_alpha, self.u_alpha_i)
         if u_k_i.ndim == 1:  # Check if the array is 1D
@@ -302,7 +302,7 @@ class GpcModel:
         I_s = I_s[sortind]
         partial_var = partial_var[:, sortind]
         
-        indexed_param_names = gpc_multiindex2param_names(I_s, self.Q.param_names())
+        indexed_param_names = gpc_multiindex2param_names(I_s, self.Q.variable_names())
         
         # Compute the Sobol indices
         sobol_index = np.divide(partial_var, total_var)
@@ -387,7 +387,7 @@ class GpcModel:
                             "mls:params": str(dist.get_dist_params()),
                         }
                     }
-                    for (name, dist) in self.Q.params.items()
+                    for (name, dist) in self.Q.variables.items()
                 ]
             }
         
