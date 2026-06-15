@@ -1,7 +1,0 @@
-gPCE_model
-==========
-
-.. toctree::
-   :maxdepth: 4
-
-   gPCE_model
