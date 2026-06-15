@@ -1,4 +1,4 @@
-__version__ = '0.1.8'
+__version__ = '0.1.9'
 
 from .gpc_model import *
 from .gpc_basis import *
