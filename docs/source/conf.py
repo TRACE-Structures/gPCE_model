@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.abspath('../../gPCE_model'))
 project = 'gPCE_model'
 copyright = '2026, András Urbanics, Bence Popovics, Emese Vastag, Elmar Zander and Noémi Friedman'
 author = 'András Urbanics, Bence Popovics, Emese Vastag, Elmar Zander and Noémi Friedman'
-release = 'v0.1.14'
+release = 'v0.1.15'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
