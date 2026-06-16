@@ -9,12 +9,12 @@
 
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../gPCE_model'))
+sys.path.insert(0, os.path.abspath('../../gPCE_model'))
 
 project = 'gPCE_model'
 copyright = '2026, András Urbanics, Bence Popovics, Emese Vastag, Elmar Zander and Noémi Friedman'
 author = 'András Urbanics, Bence Popovics, Emese Vastag, Elmar Zander and Noémi Friedman'
-release = 'v0.1.18'
+release = 'v0.1.19'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
