@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.abspath('../../gPCE_model'))
 project = 'gPCE_model'
 copyright = '2026, András Urbanics, Bence Popovics, Emese Vastag, Elmar Zander and Noémi Friedman'
 author = 'András Urbanics, Bence Popovics, Emese Vastag, Elmar Zander and Noémi Friedman'
-release = 'v0.1.19'
+release = 'v0.1.20'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -36,7 +36,7 @@ extensions = [
 numpydoc_show_class_members = False
 
 templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = []
 
 
 
