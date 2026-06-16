@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='gPCE_model',
-    version='0.1.20',
+    version='0.1.21',
     author='András Urbanics, Bence Popovics, Emese Vastag, Elmar Zander, Noémi Friedman',
     author_email='popbence@hun-ren.sztaki.hu',
     description='Implementing generalized Polynomial Chaos Expansion (gPCE) for uncertainty quantification and surrogate modeling',
