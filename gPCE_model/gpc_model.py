@@ -7,6 +7,7 @@ from sklearn.metrics import mean_squared_error
 from scipy.sparse import csr_matrix
 import copy
 import shap
+import json
 
 # ##########################################################################################
 #                           GPC MODEL
@@ -342,55 +343,72 @@ class GpcModel:
             shap_values = self.explainer(q)
         return shap_values
     
-    def to_jsonld(self, model_id='v0'):
-        """ Export the gPCE model metadata to JSON-LD format
+def to_jsonld(self, model_id: str):
 
-            Parameters
-            ----------
-            model_id : str, optional
-                Identifier for the model, by default 'v0'
-
-            Returns
-            -------
-            jsonld : dict
-                JSON-LD representation of the gPCE model metadata"""
-        
-        jsonld = {
-                "@context": {
-                    "mls": "https://ml-schema.github.io/documentation/mls.html",
-                    "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
-                },
-
-                "@id": f"https://example.org/models/{model_id}",
-                "@type": "mls:Model",
-                "mls:implementsAlgorithm": {
-                    "@id": 'https://en.wikipedia.org/wiki/Generalized_polynomial_chaos',
-                    "@type": "mls:Algorithm",
-                    "rdfs:label": "Generalized Polynomial Chaos",
-                },
-
-                "mls:hasHyperParameter": [
-                    {
-                        "@type": "mls:HyperParameterSetting",
-                        "mls:hasParameterName": "p",
-                        "mls:hasParameterValue": str(self.p)
-                    }
-                ],
-
-                "mls:hasInput": [
-                    {
-                        "@type": "mls:Feature",
-                        "mls:featureName": name,
-                        "mls:hasDistribution": {
-                            "@type": "mls:Distribution",
-                            "mls:distributionType": dist.get_dist_type(),
-                            "mls:params": str(dist.get_dist_params()),
-                        }
-                    }
-                    for (name, dist) in self.Q.variables.items()
-                ]
+        hyperparameters = [
+            {
+                "@id": "#p",
+                "@type": "mls:HyperParameter",
+                "rdfs:label": "p"
             }
-        
+        ]
+
+        hyperparameter_settings = [
+            {
+                "@id": "#p_setting",
+                "@type": "mls:HyperParameterSetting",
+                "mls:specifiedBy": {
+                    "@id": "#p"
+                },
+                "mls:hasValue": self.p
+            }
+        ]
+
+        jsonld = {
+
+            "@context": {
+                "mls": "http://www.w3.org/ns/mls#",
+                "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+            },
+
+            "@id": f"urn:model:{model_id}",
+            "@type": "mls:Model",
+
+            "mls:specifiedBy": {
+                "@id": f"urn:implementation:{model_id}",
+                "@type": "mls:Implementation",
+
+                "mls:implements": {
+                    "@id": "urn:algorithm:generalized-polynomial-chaos",
+                    "@type": "mls:Algorithm",
+                    "rdfs:label": "Generalized Polynomial Chaos"
+                },
+
+                "mls:hasHyperParameter": hyperparameters
+            },
+
+            "mls:hasPart": hyperparameter_settings,
+
+            "mls:hasInput": [
+                {
+                    "@type": "mls:Feature",
+
+                    "rdfs:label": name,
+
+                    "mls:hasQuality": {
+                        "@type": "mls:FeatureCharacteristic",
+
+                        "distributionType": dist.get_dist_type(),
+                        "distributionParameters": dist.get_dist_params()
+                    }
+                }
+                for name, dist in self.Q.params.items()
+            ]
+        }
+
+        with open(f'{model_id}.json', 'w') as f:
+            json.dump(jsonld, f)
+
         return jsonld
     
     def __getstate__(self):
