@@ -343,7 +343,7 @@ class GpcModel:
             shap_values = self.explainer(q)
         return shap_values
     
-def to_jsonld(self, model_id: str):
+    def to_jsonld(self, model_id: str):
 
         hyperparameters = [
             {
