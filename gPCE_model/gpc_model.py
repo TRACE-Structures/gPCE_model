@@ -314,7 +314,7 @@ class GpcModel:
         return partial_var_df, sobol_index_df, total_var
 
     
-    def get_shap_values(self, predict_fn, q, forced=False, explainer_type="kernelexplainer"):
+    def get_shap_values(self, predict_fn, q, forced=False, explainer_type="kernelexplainer", silent=False):
         """ Compute SHAP values for the gPCE model predictions
 
             Parameters
@@ -340,7 +340,7 @@ class GpcModel:
             if hasattr(self, 'explainer') == False or forced == True:
                 explainer = shap.KernelExplainer(predict_fn, q)
                 self.explainer = explainer
-            shap_values = self.explainer(q)
+            shap_values = self.explainer(q, silent=silent)
         return shap_values
     
     def to_jsonld(self, model_id: str):
