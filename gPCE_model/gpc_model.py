@@ -1,5 +1,6 @@
 """ Generic class for generalized polynomial chaos expansion (gPCE) model"""
 
+import datetime
 import numpy as np
 import pandas as pd
 from .gpc_basis import GpcBasis
@@ -343,7 +344,7 @@ class GpcModel:
             shap_values = self.explainer(q, silent=silent)
         return shap_values
     
-    def to_jsonld(self, model_id: str):
+    def to_jsonld(self, model_id=None, building_did=None, building_ual=None, name=None, doc_type=None, description=None):
 
         hyperparameters = [
             {
@@ -364,50 +365,72 @@ class GpcModel:
             }
         ]
 
-        jsonld = {
+        mls_spec = {
+            "@id": f"urn:implementation:{model_id}",
+            "@type": "mls:Implementation",
 
-            "@context": {
-                "mls": "http://www.w3.org/ns/mls#",
-                "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+            "mls:implements": {
+                "@id": "urn:algorithm:generalized-polynomial-chaos",
+                "@type": "mls:Algorithm",
+                "rdfs:label": "Generalized Polynomial Chaos"
             },
 
-            "@id": f"urn:model:{model_id}",
-            "@type": "mls:Model",
-
-            "mls:specifiedBy": {
-                "@id": f"urn:implementation:{model_id}",
-                "@type": "mls:Implementation",
-
-                "mls:implements": {
-                    "@id": "urn:algorithm:generalized-polynomial-chaos",
-                    "@type": "mls:Algorithm",
-                    "rdfs:label": "Generalized Polynomial Chaos"
-                },
-
-                "mls:hasHyperParameter": hyperparameters
-            },
-
-            "mls:hasPart": hyperparameter_settings,
-
-            "mls:hasInput": [
-                {
-                    "@type": "mls:Feature",
-
-                    "rdfs:label": name,
-
-                    "mls:hasQuality": {
-                        "@type": "mls:FeatureCharacteristic",
-
-                        "distributionType": dist.get_dist_type(),
-                        "distributionParameters": dist.get_dist_params()
-                    }
-                }
-                for name, dist in self.Q.params.items()
-            ]
+            "mls:hasHyperParameter": hyperparameters
         }
 
-        with open(f'{model_id}.json', 'w') as f:
-            json.dump(jsonld, f)
+        mls_inputs = [
+            {
+                "@type": "mls:Feature",
+
+                "rdfs:label": feat_name,
+
+                "mls:hasQuality": {
+                    "@type": "mls:FeatureCharacteristic",
+
+                    "distributionType": dist.get_dist_type(),
+                    "distributionParameters": dist.get_dist_params()
+                }
+            }
+            for feat_name, dist in self.Q.get_variables().items()
+        ]
+
+        if building_did is not None:
+            jsonld = {
+                "@context": {
+                    "schema": "https://schema.org/",
+                    "dcterms": "http://purl.org/dc/terms/",
+                    "dkg": "https://origintrail.io/ontology/",
+                    "mls": "http://www.w3.org/ns/mls#",
+                    "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+                },
+
+                "@id": model_id,
+                "@type": "schema:Dataset",
+
+                "schema:name": name,
+                "dcterms:type": doc_type,
+                "schema:description": description,
+                "schema:hasPart": {"@id": building_did, "dkg:ual": building_ual},
+                "dcterms:created": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+
+                "mls:specifiedBy": mls_spec,
+                "mls:hasPart": hyperparameter_settings,
+                "mls:hasInput": mls_inputs
+            }
+        else:
+            jsonld = {
+                "@context": {
+                    "mls": "http://www.w3.org/ns/mls#",
+                    "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+                },
+
+                "@id": f"urn:model:{model_id}",
+                "@type": "mls:Model",
+
+                "mls:specifiedBy": mls_spec,
+                "mls:hasPart": hyperparameter_settings,
+                "mls:hasInput": mls_inputs
+            }
 
         return jsonld
     
