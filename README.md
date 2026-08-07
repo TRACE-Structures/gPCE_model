@@ -1,7 +1,7 @@
 # gPCE_model
 
 [![DOI](https://zenodo.org/badge/1113758403.svg)](https://doi.org/10.5281/zenodo.17966291)
-[![Read the Docs](https://img.shields.io/readthedocs/gPCE-model?style=for-the-badge&logo=readthedocs)](https://gPCE-model.readthedocs.io/en/latest/)
+[![Read the Docs](https://img.shields.io/readthedocs/gpce-model?style=for-the-badge&logo=readthedocs)](https://gpce-model.readthedocs.io/en/latest/)
 [![PyPI - Version](https://img.shields.io/pypi/v/gPCE-model?style=for-the-badge)](https://pypi.org/project/gPCE-model/)
 
 A Python package implementing generalized Polynomial Chaos Expansion (gPCE) for uncertainty quantification and surrogate modeling. The software is built on Elmar Zander's [sglib](https://github.com/ezander/sglib) approach.
