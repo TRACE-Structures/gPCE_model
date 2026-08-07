@@ -104,7 +104,7 @@ Related Projects
 ----------------
 
 - `uncertain_variables <https://github.com/TRACE-Structures/uncertain_variables/>`_: Probabilistic variable management
-- `digital_twinning <https://github.com/TRACE-Structures/gPCE_model/>`_: Digital Twinning
+- `digital_twinning <https://github.com/TRACE-Structures/digital_twinning/>`_: Digital Twinning
 
 Support
 -------
