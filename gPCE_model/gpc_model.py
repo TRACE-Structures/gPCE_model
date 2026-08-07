@@ -29,45 +29,7 @@ class GpcModel:
             Coefficients of the gPCE model
 
         p : int
-            Maximum total degree of the basis functions
-
-        Methods
-        -------
-        __init__(Q, p=0, I="default", full_tensor=False, **kwargs)
-            Initialize the gPCE model with given parameters
-            
-        __repr__()
-            Return a string representation of the GpcModel object
-
-        compute_coeffs_by_regression(q_k_j, u_k_i)
-            Compute gPCE coefficients using regression method
-
-        compute_coeffs_by_projection(q_k_j, u_k_i, w_k)
-            Compute gPCE coefficients using projection method
-
-        predict(q_k_j)
-            Predict model response at given parameter points q_k_j
-
-        train(q_train, y_train)
-            Train the gPCE model using training data
-
-        train_and_evaluate(q_train, y_train, q_val, y_val)
-            Train the gPCE model and evaluate on validation data
-
-        mean()
-            Compute the mean of the gPCE model
-
-        variance()
-            Compute the variance of the gPCE model
-
-        compute_partial_vars(model_obj, max_index=1)
-            Compute partial variances and Sobol indices up to specified order
-
-        get_shap_values(predict_fn, q, forced=False, explainer_type="kernelexplainer")
-            Compute SHAP values for the gPCE model predictions
-
-        to_jsonld(model_id='v0')
-            Export the gPCE model metadata to JSON-LD format """
+            Maximum total degree of the basis functions """
     
     def __init__(self, Q, p=0, I="default", full_tensor=False, **kwargs):
         """ Initialize the gPCE model with given parameters

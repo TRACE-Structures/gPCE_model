@@ -39,15 +39,7 @@ class Descending:
         Attributes
         ----------
         column_index : int
-            Index of the column to be sorted in descending order
-            
-        Methods
-        -------
-        __init__(column_index)
-            Initialize the Descending object with the specified column index
-            
-        __int__()
-            Return the column index when cast to integer """
+            Index of the column to be sorted in descending order """
 
     def __init__(self, column_index):
         """ Initialize the Descending object with the specified column index

@@ -19,24 +19,7 @@ class GpcBasis:
             maximum total degree of the basis functions
 
         I : numpy.array
-            multiindex set defining the basis functions
-
-        Methods
-        -------
-        __init__(Q, p=0, I="default", full_tensor=False, **kwargs)
-            Initialize the gpc basis with given parameters
-
-        __repr__()
-            Set how the gpc basis looks when printed
-
-        size()
-            Return the size of the multiindex set
-
-        evaluate(xi, dual=False)
-            Evaluate the gpc basis functions at given points xi
-
-        norm(do_sqrt=True)
-            Compute the norm of the basis functions """
+            multiindex set defining the basis functions"""
     
     # ---------------------Initialization---------------------------------------------------
     def __init__(self, Q, p=0, I="default", full_tensor=False, **kwargs):
