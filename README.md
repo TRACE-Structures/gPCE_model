@@ -1,3 +1,5 @@
+![Logo](https://raw.githubusercontent.com/TRACE-Structures/gPCE_model/main/docs/gpce_model_logo.png)
+
 # gPCE_model
 
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.17966291-blue)](https://doi.org/10.5281/zenodo.17966291)
