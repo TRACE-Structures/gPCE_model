@@ -2,15 +2,15 @@ from setuptools import setup, find_packages
 
 setup(
     name='gPCE_model',
-    version='1.0.1',
+    version='1.0.2',
     author='András Urbanics, Bence Popovics, Emese Vastag, Elmar Zander, Noémi Friedman',
     author_email='popbence@hun-ren.sztaki.hu',
     description='Implementing generalized Polynomial Chaos Expansion (gPCE) for uncertainty quantification and surrogate modeling',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     url='https://github.com/TRACE-Structures/gPCE_model/',
-    packages=find_packages(),
-    py_modules=['uncertain_variables'],
+    packages=['gPCE_model'] + ['gPCE_model.' + p for p in find_packages(where='src')],
+    package_dir={'gPCE_model': 'src'},
     install_requires=[
         'numpy',
         'scikit-learn',
